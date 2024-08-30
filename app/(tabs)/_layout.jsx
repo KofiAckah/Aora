@@ -14,6 +14,7 @@ const TabIcon = ({ icon, color, name, focused }) => {
       />
       <Text
         className={`${focused ? "font-psemibold" : "font-pregular"} text-xs`}
+        style={{ color: color }}
       >
         {name}
       </Text>
@@ -24,7 +25,19 @@ const TabIcon = ({ icon, color, name, focused }) => {
 const TabLayout = () => {
   return (
     <>
-      <Tabs screenOptions={{ tabBarShowLabel: false }}>
+      <Tabs
+        screenOptions={{
+          tabBarShowLabel: false,
+          tabBarActiveTintColor: "#FFA001",
+          tabBarInactiveTintColor: "#CDCDE0",
+          tabBarStyle: {
+            height: 65,
+            backgroundColor: "#161622",
+            borderTopColor: "#232533",
+            borderTopWidth: 1,
+          },
+        }}
+      >
         <Tabs.Screen
           name="Home"
           options={{
@@ -41,21 +54,6 @@ const TabLayout = () => {
           }}
         />
         <Tabs.Screen
-          name="Create"
-          options={{
-            title: "Create",
-            headerShown: false,
-            tabBarIcon: ({ color, focused }) => (
-              <TabIcon
-                icon={icons.create}
-                name="Create"
-                color={color}
-                focused={focused}
-              />
-            ),
-          }}
-        />
-        <Tabs.Screen
           name="Bookmark"
           options={{
             title: "Bookmark",
@@ -64,6 +62,21 @@ const TabLayout = () => {
               <TabIcon
                 icon={icons.bookmark}
                 name="Bookmark"
+                color={color}
+                focused={focused}
+              />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="Create"
+          options={{
+            title: "Create",
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon
+                icon={icons.plus}
+                name="Create"
                 color={color}
                 focused={focused}
               />
